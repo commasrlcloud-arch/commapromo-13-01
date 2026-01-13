@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smaltimento Con Scontrino - Professional Kitchen</title>
+    <style>
+        @font-face {
+            font-family: 'Electrolux Sans';
+            src: url('https://db.onlinewebfonts.com/t/5b4b57db5f76c93e4664dbcb94e5220a.woff2') format('woff2'),
+                 url('https://db.onlinewebfonts.com/t/5b4b57db5f76c93e4664dbcb94e5220a.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Electrolux Sans';
+            src: url('https://db.onlinewebfonts.com/t/4a0c4b6a7b3c5d8e9f1a2b3c4d5e6f70.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Electrolux Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #2a3443;
+            color: #2a3443;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 3px solid #566f87;
+            padding-bottom: 30px;
+        }
+
+        .header-logo {
+            max-width: 350px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: #ffffff;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand {
+            font-size: 0.8em;
+            color: #566f87;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .product-model {
+            font-size: 0.8em;
+            color: #999;
+            margin-bottom: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .highlight-badge {
+            background: #7ea2c7;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .features-list {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 0.7em;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .features-list li {
+            margin-bottom: 4px;
+            list-style: none;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7ea2c7;
+            font-weight: bold;
+        }
+
+        .price-section {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .price {
+            font-size: 1.6em;
+            font-weight: 900;
+            color: #ff0000;
+            margin-bottom: 5px;
+        }
+
+        .stock-info {
+            font-size: 0.75em;
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid #566f87;
+            font-size: 0.85em;
+            color: #566f87;
+        }
+
+        .footer-note {
+            font-weight: 700;
+            color: #2a3443;
+            margin-top: 10px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/319d59c9-a65b-446b-a4b0-ca75d5efa0ba" alt="Comma Logo" class="header-logo">
+        </div>
+
+        <div class="products-grid">
+            <!-- ==================== AEG ==================== -->
+            
+            <!-- AEG IKK86683FB - Piano Induzione -->
+            <div class="product-card">
+                <img src="https://www.aeg.it/services/eml/asset/6ce64833-c158-4a94-bb40-eecc81d03a06/E4RM3Q/PSAAHO160P363138/WS_PN/PSAAHO160P363138.png" alt="AEG IKK86683FB Piano Induzione" class="product-image">
+                <div class="product-info">
+                    <div class="brand">AEG</div>
+                    <div class="product-name">Piano Induzione 80cm</div>
+                    <div class="product-model">IKK86683FB</div>
+                    <div class="highlight-badge">Tecnologia Flex Induction</div>
+                    <ul class="features-list">
+                        <li>4 Fuochi ad Induzione</li>
+                        <li>Classe Energetica A</li>
+                        <li>Controllo Touch Premium</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 1.300,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AEG BEB331010M - Forno -->
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/91EomcNewwL._AC_SL1500_.jpg" alt="AEG BEB331010M Forno" class="product-image">
+                <div class="product-info">
+                    <div class="brand">AEG</div>
+                    <div class="product-name">Forno Multifunzione</div>
+                    <div class="product-model">BEB331010M</div>
+                    <div class="highlight-badge">Cottura Omogenea Garantita</div>
+                    <ul class="features-list">
+                        <li>71 Litri Capacità</li>
+                        <li>7 Funzioni di Cottura</li>
+                        <li>SurroundCook Technology</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 2 pezzi</div>
+                    <div class="price-section">
+                        <div class="price">€ 400,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AEG KKK884500M - Macchina Caffè -->
+            <div class="product-card">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1768312138/search_images/272215da3d427f6363007651a8cd80cf19d3a60d.jpg" alt="AEG KKK884500M Macchina Caffè" class="product-image">
+                <div class="product-info">
+                    <div class="brand">AEG</div>
+                    <div class="product-name">Macchina Caffè Superautomatica</div>
+                    <div class="product-model">KKK884500M</div>
+                    <div class="highlight-badge">Caffè da Barista</div>
+                    <ul class="features-list">
+                        <li>Superautomatica Professionale</li>
+                        <li>15 Bevande Programmabili</li>
+                        <li>Doppi Macinacaffè</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 1.350,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== ELECTROLUX ==================== -->
+
+            <!-- ELECTROLUX KOHHH005X - Forno -->
+            <div class="product-card">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1768312623/search_images/872511a3f460498e66869f206332dcc03251f638.jpg" alt="ELECTROLUX Forno" class="product-image">
+                <div class="product-info">
+                    <div class="brand">ELECTROLUX</div>
+                    <div class="product-name">Forno Built-in</div>
+                    <div class="product-model">KOHHH005X</div>
+                    <div class="highlight-badge">Risultati Professionali</div>
+                    <ul class="features-list">
+                        <li>65 Litri Capacità</li>
+                        <li>Multi-Livello Cottura</li>
+                        <li>Pulizia Automatica</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 2 pezzi</div>
+                    <div class="price-section">
+                        <div class="price">€ 320,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ELECTROLUX ESF5545LOW - Lavastoviglie -->
+            <div class="product-card">
+                <img src="https://ricondizionati.mediaworld.it/dw/image/v2/BJRJ_PRD/on/demandware.static/-/Sites-mw-refurbished-catalog-master/default/dwf3652b66/images/hi-res/738829.jpg?sw=1000&sh=1000" alt="ELECTROLUX Lavastoviglie" class="product-image">
+                <div class="product-info">
+                    <div class="brand">ELECTROLUX</div>
+                    <div class="product-name">Lavastoviglie Freestanding</div>
+                    <div class="product-model">ESF5545LOW</div>
+                    <div class="highlight-badge">Piatti Impeccabili</div>
+                    <ul class="features-list">
+                        <li>13 Coperti Capacità</li>
+                        <li>Classe Energetica A++</li>
+                        <li>AirDry Technology</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 400,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== SAMSUNG ==================== -->
+
+            <!-- SAMSUNG NV75K5541RS - Forno -->
+            <div class="product-card">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1768312617/search_images/1379ed27d532eec7bc510e967efc60626ee9c60d.jpg" alt="SAMSUNG Forno" class="product-image">
+                <div class="product-info">
+                    <div class="brand">SAMSUNG</div>
+                    <div class="product-name">Forno Built-in</div>
+                    <div class="product-model">NV75K5541RS/ET</div>
+                    <div class="highlight-badge">Grande Capienza</div>
+                    <ul class="features-list">
+                        <li>75 Litri Capacità</li>
+                        <li>Catalytic Cleaning</li>
+                        <li>7 Funzioni Cottura</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 2 pezzi</div>
+                    <div class="price-section">
+                        <div class="price">€ 450,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAMSUNG NV7B4540VBS - Forno -->
+            <div class="product-card">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1768312623/search_images/44a0c63e76d46e4e77d74bdc1076e7177782fe3e.jpg" alt="SAMSUNG Forno" class="product-image">
+                <div class="product-info">
+                    <div class="brand">SAMSUNG</div>
+                    <div class="product-name">Forno Built-in</div>
+                    <div class="product-model">NV7B4540VBS</div>
+                    <div class="highlight-badge">Cottura Doppia Simultanea</div>
+                    <ul class="features-list">
+                        <li>76 Litri Capacità</li>
+                        <li>Dual Cook Series 4</li>
+                        <li>Classe A+</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 650,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAMSUNG NQ50K3130BS - Microonde -->
+            <div class="product-card">
+                <img src="https://images.samsung.com/is/image/samsung/it-compact-oven-nq50k3130bs-nq50k3130bs-et-frontsilver-80506979?$Q90_1368_1094_F_JPG$" alt="SAMSUNG Microonde" class="product-image">
+                <div class="product-info">
+                    <div class="brand">SAMSUNG</div>
+                    <div class="product-name">Microonde Built-in</div>
+                    <div class="product-model">NQ50K3130BS/ET</div>
+                    <div class="highlight-badge">Cottura Veloce Pro</div>
+                    <ul class="features-list">
+                        <li>50 Litri Capacità</li>
+                        <li>Grill Integrato</li>
+                        <li>Sensore Umidità</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 400,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAMSUNG RS68A8831B1 - Frigorifero -->
+            <div class="product-card">
+                <img src="https://images.samsung.com/is/image/samsung/p6pim/it/rs68a8831b1-ef/gallery/it-rs8000nc-8-373679-rs68a8831b1-ef-379583379?$Q90_1368_1094_F_JPG$" alt="SAMSUNG Frigorifero" class="product-image">
+                <div class="product-info">
+                    <div class="brand">SAMSUNG</div>
+                    <div class="product-name">Frigorifero Side-by-Side</div>
+                    <div class="product-model">RS68A8831B1/EF</div>
+                    <div class="highlight-badge">Spazioso e Moderno</div>
+                    <ul class="features-list">
+                        <li>676 Litri Totali</li>
+                        <li>Twin Cooling System</li>
+                        <li>Dispenser Acqua/Ghiaccio</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 1.200,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== GORENJE ==================== -->
+
+            <!-- GORENJE IS846BG - Piano Induzione -->
+            <div class="product-card">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1768312145/search_images/c065e2627888dcfc902ed41af2d8c146b01a182c.jpg" alt="GORENJE Piano Induzione" class="product-image">
+                <div class="product-info">
+                    <div class="brand">GORENJE</div>
+                    <div class="product-name">Piano Induzione 80cm</div>
+                    <div class="product-model">IS846BG</div>
+                    <div class="highlight-badge">Cottura Rapida e Precisa</div>
+                    <ul class="features-list">
+                        <li>4 Zone Induzione</li>
+                        <li>Classe Energetica A</li>
+                        <li>10 Livelli Potenza</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 550,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GORENJE BCM598S18X - Forno Combinato -->
+            <div class="product-card">
+                <img src="https://static14.gorenje.com/mabagor/imagelib/full-trim/8/3/83a6e9c429e5a130314660c31a55583e_124938_fp.jpg" alt="GORENJE BCM598S18X Forno" class="product-image">
+                <div class="product-info">
+                    <div class="brand">GORENJE</div>
+                    <div class="product-name">Forno Combinato Built-in</div>
+                    <div class="product-model">BCM598S18X</div>
+                    <div class="highlight-badge">2 in 1 Professional</div>
+                    <ul class="features-list">
+                        <li>51 Litri Microonde</li>
+                        <li>ProCook Module</li>
+                        <li>Classe Energetica B</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 700,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GORENJE GV663C60 - Lavastoviglie -->
+            <div class="product-card">
+                <img src="https://static14.gorenje.com/mabagor/imagelib/full-trim/0/5/05e0eb1fb465ccc70111ac77a70a4fb3_194625_fp.jpg" alt="GORENJE Lavastoviglie" class="product-image">
+                <div class="product-info">
+                    <div class="brand">GORENJE</div>
+                    <div class="product-name">Lavastoviglie Built-in</div>
+                    <div class="product-model">GV663C60</div>
+                    <div class="highlight-badge">Affidabilità Garantita</div>
+                    <ul class="features-list">
+                        <li>14 Coperti Capacità</li>
+                        <li>Classe Energetica A</li>
+                        <li>Garanzia 3 Anni</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 450,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== MASTER KITCHEN ==================== -->
+
+            <!-- MK MKO 45509-ED BK - Forno -->
+            <div class="product-card">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1768312160/search_images/6bf39feb7cefb3c769bd513c1398265e2a7f096f.jpg" alt="Master Kitchen Forno" class="product-image">
+                <div class="product-info">
+                    <div class="brand">MASTER KITCHEN</div>
+                    <div class="product-name">Forno Built-in</div>
+                    <div class="product-model">MKO 45509-ED BK</div>
+                    <div class="highlight-badge">Cottura Uniforme</div>
+                    <ul class="features-list">
+                        <li>Classe Energetica A</li>
+                        <li>8 Funzioni</li>
+                        <li>Ventilazione 360°</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 5 pezzi</div>
+                    <div class="price-section">
+                        <div class="price">€ 250,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MK MKRF 320INF E - Frigorifero -->
+            <div class="product-card">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1768312160/search_images/7382b4cefd055f5dfa52c2dfcc3983c05207dbe9.jpg" alt="Master Kitchen Frigorifero" class="product-image">
+                <div class="product-info">
+                    <div class="brand">MASTER KITCHEN</div>
+                    <div class="product-name">Frigorifero Combinato Built-in</div>
+                    <div class="product-model">MKRF 320INF E</div>
+                    <div class="highlight-badge">Freschezza Garantita</div>
+                    <ul class="features-list">
+                        <li>Classe Energetica A</li>
+                        <li>No Frost Technology</li>
+                        <li>Shelf Regolabili</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 5 pezzi</div>
+                    <div class="price-section">
+                        <div class="price">€ 500,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== BLANCO ==================== -->
+
+            <!-- BLANCO Dissipatore -->
+            <div class="product-card">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1768312617/search_images/430c528082accff10cd550f2a2cddddc65fd92e6.jpg" alt="BLANCO Dissipatore" class="product-image">
+                <div class="product-info">
+                    <div class="brand">BLANCO</div>
+                    <div class="product-name">Dissipatore Mod. 150</div>
+                    <div class="product-model">MOD.150</div>
+                    <div class="highlight-badge">Rifiuti sempre Discreti</div>
+                    <ul class="features-list">
+                        <li>370 Watt Potenza</li>
+                        <li>Acciaio Inox Spazzolato</li>
+                        <li>Silenziioso 74dB</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 500,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLANCO BLANCODINAS 8 S2 V -->
+            <div class="product-card">
+                <img src="https://cdn.blanco.com/assets/derivateOPK/blanco_756x700/hlr-system/png/221/16221.png" alt="BLANCO BLANCODINAS Lavello" class="product-image">
+                <div class="product-info">
+                    <div class="brand">BLANCO</div>
+                    <div class="product-name">Lavello Inox 2 Vasche</div>
+                    <div class="product-model">BLANCODINAS 8 S2 V + G SX</div>
+                    <div class="highlight-badge">Design Professionale</div>
+                    <ul class="features-list">
+                        <li>Dimensioni 116x50 cm</li>
+                        <li>Acciaio Inox Premium</li>
+                        <li>Vasca Sinistra + Gocciolatoio</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 2 pezzi</div>
+                    <div class="price-section">
+                        <div class="price">€ 110,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLANCO BLANCOLEGRA XL 6 S -->
+            <div class="product-card">
+                <img src="https://cdn.blanco.com/assets/derivateOPK/blanco_756x700/hlr-system/png/184/47184.png" alt="BLANCO BLANCOLEGRA Lavello" class="product-image">
+                <div class="product-info">
+                    <div class="brand">BLANCO</div>
+                    <div class="product-name">Lavello Silgranit Antracite</div>
+                    <div class="product-model">BLANCOLEGRA XL 6 S</div>
+                    <div class="highlight-badge">Resistenza Superiore</div>
+                    <ul class="features-list">
+                        <li>1 Vasca + Gocciolatoio</li>
+                        <li>Silgranit PuraDur</li>
+                        <li>Colore Antracite</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 160,00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLANCO BLANCOMILI -->
+            <div class="product-card">
+                <img src="https://cdn.blanco.com/assets/derivateOPK/blanco_756x700/hlr-system/Kuechenarmaturen/BLANCOMILI_SILGRANIT/03017013g.png" alt="BLANCO BLANCOMILI Miscelatore" class="product-image">
+                <div class="product-info">
+                    <div class="brand">BLANCO</div>
+                    <div class="product-name">Miscelatore Bianco</div>
+                    <div class="product-model">BLANCOMILI</div>
+                    <div class="highlight-badge">Eleganza Minimal</div>
+                    <ul class="features-list">
+                        <li>Finitura Bianco Opaco</li>
+                        <li>Bocca Alta Girevole</li>
+                        <li>Cartuccia Ceramica</li>
+                    </ul>
+                    <div class="stock-info">Disponibilità: 1 pezzo</div>
+                    <div class="price-section">
+                        <div class="price">€ 90,00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>TUTTI I PREZZI SONO DA INTENDERSI NETTI</div>
+            <div class="footer-note">VALIDITÀ OFFERTA SOGGETTA A DISPONIBILITÀ GIACENZA</div>
+        </div>
+    </div>
+</body>
+</html>
